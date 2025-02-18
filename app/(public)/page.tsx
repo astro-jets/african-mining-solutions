@@ -40,7 +40,6 @@ export default function Home() {
       {/* Registration Section */}
       <RegistrationSection />
 
-
       {/* Legacy Section */}
       <LegacySection />
 
