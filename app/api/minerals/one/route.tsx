@@ -1,14 +1,16 @@
 import dbConnect from "@/utils/db";
-import Deposit from "@/models/Deposit";
+import Mineral from "@/models/Mineral";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: Request) {
     await dbConnect();
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
     try {
-        const deposits = await Deposit.find({});
+        const mineral = await Mineral.findById(id);
 
 
-        return NextResponse.json({ success: true, deposits }, {
+        return NextResponse.json({ success: true, mineral }, {
             status: 200,
         });
     } catch (error) {

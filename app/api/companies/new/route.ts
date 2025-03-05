@@ -1,15 +1,17 @@
 import dbConnect from "@/utils/db";
-import Deposit from "@/models/Deposit";
+import Company from "@/models/Company";
 import { NextResponse } from "next/server";
 import { join } from "path";
 import { writeFile } from "fs/promises";
 
 export async function POST(req: Request) {
-  // Add a new deposit
+  // Add a new company
   await dbConnect();
   try {
     const data = await req.formData();
     const name = data.get("name") as unknown as String;
+    const phone = data.get("phone") as unknown as String;
+    const email = data.get("email") as unknown as String;
     const country = data.get("country") as unknown as String;
     const description = data.get("description") as unknown as String;
     const file = data.get("file") as unknown as File;
@@ -19,32 +21,34 @@ export async function POST(req: Request) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const pathToPublic = join(process.cwd(), "public", "uploads", "deposits");
+    const pathToPublic = join(process.cwd(), "public", "uploads", "companies");
     const path = join(pathToPublic, file.name);
     await writeFile(path, buffer);
 
     console.log(`Open ${path} to view image`);
 
-    const newDeposit = new Deposit({
+    const newCompany = new Company({
       name,
+      phone,
+      email,
       country,
       description,
       coordinates: [lat, long],
       image: file.name,
     });
 
-    const deposit = await newDeposit.save();
+    const company = await newCompany.save();
 
-    if (!deposit) {
+    if (!company) {
       return NextResponse.json({
         status: true,
-        message: `The deposit wasnt saved!`,
+        message: `The company wasnt saved!`,
       });
     }
     return NextResponse.json(
       {
         status: true,
-        message: `The deposit was successfully saved!`,
+        message: `The company was successfully saved!`,
       },
       { status: 200 }
     );

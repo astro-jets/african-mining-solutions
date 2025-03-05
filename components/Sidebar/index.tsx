@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 // import SidebarLinkGroup from "./SidebarLinkGroup";
-import { BsBarChartLine, BsDoorOpen, BsGear, BsTools } from "react-icons/bs";
-import { IoFolderOpenOutline } from "react-icons/io5";
+import { BsBarChartLine, BsBuilding, BsBuildings, BsDoorOpen, BsEnvelopeArrowUp, BsGear, BsTools } from "react-icons/bs";
+import { IoFolderOpenOutline, IoHammerOutline } from "react-icons/io5";
+import { FaMountain } from "react-icons/fa";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -153,7 +154,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     "bg-white text-primary dark:bg-meta-4"
                     }`}
                 >
-                  <BsTools size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
+                  <IoHammerOutline size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
                   Deposits
                 </Link>
               </li>
@@ -164,7 +165,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     "bg-white text-primary dark:bg-meta-4"
                     }`}
                 >
-                  <BsTools size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
+                  <FaMountain size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
                   Minerals
                 </Link>
               </li>
@@ -175,7 +176,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     "bg-white text-primary dark:bg-meta-4"
                     }`}
                 >
-                  <BsTools size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
+                  <BsEnvelopeArrowUp size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
                   Applications
                 </Link>
               </li>
@@ -187,7 +188,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     "bg-white text-primary dark:bg-meta-4"
                     }`}
                 >
-                  <BsTools size={20} className={`${pathname.includes("maintenances") ? 'fill-orange-600' : 'fill-white'}`} />
+                  <BsBuildings size={20} className={`${pathname.includes("maintenances") ? 'fill-orange-600' : 'fill-white'}`} />
                   Companies
                 </Link>
               </li>

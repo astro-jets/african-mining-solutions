@@ -6,8 +6,8 @@ import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
 // import Image from 'next/image'
 import { useAudioStore } from '@/stores/MusicStore'
-import { Track } from '@/types/Track'
-import { getAllTracks } from '@/services/trackService'
+import { Track } from '@/types/Deposit'
+import { getAllTracks } from '@/services/deposit'
 
 type PropType = {
   slides: number[]

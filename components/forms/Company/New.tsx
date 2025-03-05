@@ -11,9 +11,9 @@ import { useRouter } from "next/navigation";
 import { BsPlus, BsX } from "react-icons/bs";
 
 const initialAsset = {
-    name: '', country: '', long: 0, lat: 0, path: '', description: ''
+    name: '', country: '', long: 0, lat: 0, path: '', description: '', phone: '', email: ''
 }
-const NewDeposit = () => {
+const NewCompany = () => {
     const [file, setFile] = useState<File>();
     const [loading, setLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
@@ -26,29 +26,31 @@ const NewDeposit = () => {
     const handleSubmit = async () => {
         if (!file) {
             setShowErrModal(true)
-            setErrMsg("Please attach an image of the mine deposit.")
+            setErrMsg("Please attach an image of the mine company.")
             return
         }
         if (!formData.name) {
             setShowErrModal(true)
-            setErrMsg("Please enter the mine deposit name.")
+            setErrMsg("Please enter the mine company name.")
             return
         }
         if (!formData.lat || !formData.long) {
             setShowErrModal(true)
-            setErrMsg("Please enter the mine deposit location.")
+            setErrMsg("Please enter the mine company location.")
             return
         }
         const data = new FormData();
         data.append('file', file);
         data.append('name', formData.name);
+        data.append('phone', formData.phone);
+        data.append('email', formData.email);
         data.append('country', formData.country);
         data.append('description', formData.description);
         data.append('lat', formData.lat.toString());
         data.append('long', formData.long.toString());
         console.log("Req => ", data)
         setLoading(true)
-        const res = await fetch(`http://localhost:3000/api/deposits/new`, {
+        const res = await fetch(`http://localhost:3000/api/companies/new`, {
             method: "POST",
             body: data,
         });
@@ -76,7 +78,7 @@ const NewDeposit = () => {
                         <BsPlus color="white" size={30} />
                     </span>
                     <p className="text-xl text-graydark dark:text-gray">
-                        {showForm ? 'cancel entry' : 'add a new mine deposit'}
+                        {showForm ? 'cancel entry' : 'add a new company'}
                     </p>
                 </div>
             }
@@ -84,7 +86,7 @@ const NewDeposit = () => {
                 <div className="rounded-2xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                     <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark flex justify-between items-center">
                         <h3 className="font-medium text-black dark:text-white">
-                            Add a new deposit
+                            Add a new company
                         </h3>
                         <div className="bg-primary w-9 h-9 p-3 rounded-full flex items-center justify-center cursor-pointer" onClick={() => { setShowForm(false) }}>
                             <BsX size={30} color="white" />
@@ -113,11 +115,11 @@ const NewDeposit = () => {
                                     </div>
                                     <div className="mb-4.5">
                                         <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                                            Deposit Name
+                                            Company Name
                                         </label>
                                         <input
                                             type="text"
-                                            placeholder="Deposit Name"
+                                            placeholder="Company Name"
                                             className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                             onChange={(e) => {
                                                 setFormData({
@@ -127,6 +129,43 @@ const NewDeposit = () => {
                                             }}
                                             value={formData.name}
                                         />
+                                    </div>
+
+                                    <div className="flex justify-between">
+                                        <div className="mb-4.5 w-[48%]">
+                                            <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                                                Phone Number
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder="Phone nu,ber"
+                                                className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                                onChange={(e) => {
+                                                    setFormData({
+                                                        ...formData,
+                                                        phone: e.target.value
+                                                    })
+                                                }}
+                                                value={formData.phone}
+                                            />
+                                        </div>
+                                        <div className="mb-4.5 w-[48%]">
+                                            <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                                                Email Adresss
+                                            </label>
+                                            <input
+                                                type="email"
+                                                placeholder="Email address"
+                                                className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                                onChange={(e) => {
+                                                    setFormData({
+                                                        ...formData,
+                                                        email: e.target.value
+                                                    })
+                                                }}
+                                                value={formData.email}
+                                            />
+                                        </div>
                                     </div>
 
                                     <div className="flex justify-between">
@@ -168,11 +207,11 @@ const NewDeposit = () => {
 
                                     <div className="w-full">
                                         <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                                            Mine Deposit Description
+                                            Company Description
                                         </label>
                                         <textarea id="hs-textarea-with-corner-hint"
                                             className="py-3 px-4 block w-full h-60 shadow-lg border-gray-200 border-[1px] rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none bg-form-input"
-                                            placeholder="Description of the mine deposit."
+                                            placeholder="Description of the company."
                                             value={formData.description}
                                             onChange={(e) => {
                                                 setFormData({
@@ -187,7 +226,7 @@ const NewDeposit = () => {
 
                                 <div className="flex flex-col  w-[30%]">
                                     <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                                        Select deposit image
+                                        Select company image
                                     </label>
                                     <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100">
                                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -215,4 +254,4 @@ const NewDeposit = () => {
     );
 }
 
-export default NewDeposit;
+export default NewCompany;

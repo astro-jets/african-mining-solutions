@@ -1,5 +1,5 @@
 import dbConnect from "@/utils/db";
-import Deposit from "@/models/Deposit";
+import Mineral from "@/models/Mineral";
 import { NextResponse } from "next/server";
 import { join } from "path";
 import { writeFile } from "fs/promises";
@@ -19,13 +19,13 @@ export async function POST(req: Request) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const pathToPublic = join(process.cwd(), "public", "uploads", "deposits");
+    const pathToPublic = join(process.cwd(), "public", "uploads", "minerals");
     const path = join(pathToPublic, file.name);
     await writeFile(path, buffer);
 
     console.log(`Open ${path} to view image`);
 
-    const newDeposit = new Deposit({
+    const newMineral = new Mineral({
       name,
       country,
       description,
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       image: file.name,
     });
 
-    const deposit = await newDeposit.save();
+    const deposit = await newMineral.save();
 
     if (!deposit) {
       return NextResponse.json({

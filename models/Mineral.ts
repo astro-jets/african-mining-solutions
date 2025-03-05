@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
-// Define the Deposit schema
-const DepositsSchema = new Schema({
+// Define the Mineral schema
+const MineralsSchema = new Schema({
   name: { type: String, required: true },
   country: { type: String, required: true },
   description: { type: String, required: true },
@@ -9,7 +9,7 @@ const DepositsSchema = new Schema({
   image: { type: String, required: true },
 });
 
-// Initialize the Deposit model
-const Deposit = models.Deposit || model("Deposit", DepositsSchema);
+// Initialize the Mineral model
+const Mineral = models.Mineral || model("Mineral", MineralsSchema);
 
-export default Deposit;
+export default Mineral;
