@@ -12,7 +12,7 @@ const DynamicMap = dynamic(() => import('@/components/Map/MapComponent'), {
     ssr: false,
 });
 
-const SingleDepositPage = async ({ params }: { params: Params }) => {
+const SingleCompanyPage = async ({ params }: { params: Params }) => {
     const id = params.id;
     const company: Company = await fetchCompanyById(id)
 
@@ -58,4 +58,4 @@ const SingleDepositPage = async ({ params }: { params: Params }) => {
     );
 }
 
-export default SingleDepositPage;
+export default SingleCompanyPage;

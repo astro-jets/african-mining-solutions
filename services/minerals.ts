@@ -11,7 +11,7 @@ export const fetchMinerals = async () => {
 // Fetch Mineral by ID
 export const fetchMineralById = async (id: string) => {
   const response = await axios.get(`/minerals/one/?id=${id}`);
-  return response.data.deposit;
+  return response.data.mineral;
 };
 
 // Create a Mineral

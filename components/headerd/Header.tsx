@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const pages = [
-    "home", "services", "about", "contacts", //"registration"
+    "home", "deposits", "companies", "minerals", "services", "about", "contacts"
 ];
 
 const Header = () => {
@@ -46,8 +46,8 @@ const Header = () => {
                                 {
                                     pages.map((page, index) => (
                                         <li key={index}>
-                                            <Link href={page === 'home' ? '/' : page}
-                                                className="capitalize block py-2 pl-3 pr-4 text-gray-900  bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 dark:text-gray-900 " aria-current="page">
+                                            <Link href={page === 'home' ? '/' : `/${page}`}
+                                                className="capitalize block py-2 pl-3 pr-4 text-gray-900  bg-red-700 rounded lg:bg-transparent lg:text-red-700 lg:p-0 dark:text-gray-900 " aria-current="page">
                                                 {page}
                                             </Link>
                                         </li>
@@ -68,8 +68,8 @@ const Header = () => {
                                             }}>
                                                 <Link
                                                     href={page === 'home' ? '/' : `/${page}`}
-                                                    className={`block py-2 pl-3 pr-4 text-gray-900   rounded=2xl lg:bg-transparent lg:text-purple-700 lg:p-0 dark:text-gray-900  
-                                                        ${page === activePage ? "bg-purple-700" : null}
+                                                    className={`block py-2 pl-3 pr-4 text-gray-900   rounded=2xl lg:bg-transparent lg:text-red-700 lg:p-0 dark:text-gray-900  
+                                                        ${page === activePage ? "bg-red-700" : null}
                                                     `}>
                                                     {page.toUpperCase()}
                                                 </Link>
