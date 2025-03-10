@@ -3,6 +3,6 @@ export interface Deposit {
   name: string;
   country: string;
   description: string;
-  coordinate: string[];
+  coordinates: [number, number];
   image: string;
 }

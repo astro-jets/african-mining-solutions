@@ -4,6 +4,11 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { BsHammer, BsMinecart, BsTools } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoHammerSharp } from "react-icons/io5";
+import dynamic from 'next/dynamic';
+
+const DynamicMap = dynamic(() => import('@/components/Map/MapComponent'), {
+    ssr: false,
+});
 
 const SingleDepositPage = async ({ params }: { params: Params }) => {
     const id = params.id;
@@ -33,6 +38,18 @@ const SingleDepositPage = async ({ params }: { params: Params }) => {
                     <span>Diamonds</span>
                 </p>
                 <h3 className="text-lg font-medium text-black my-8 ">{deposit.description}</h3>
+            </div>
+            <div className="flex flex-col max-w-full w-full h-full">
+                <h2 className="text-3xl font-bold text-black">Map Section</h2>
+
+
+                <div className="w-full h-[100vh]">
+                    <DynamicMap
+                        title={deposit.name}
+                        center={deposit.coordinates}
+                        zoom={12} />
+                </div>
+
             </div>
         </div>
     );

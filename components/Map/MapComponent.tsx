@@ -1,27 +1,51 @@
-"use client"
+"use client";
 import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from "leaflet";
+
 interface MapProps {
   center: [number, number];
   zoom: number;
+  title: string;
 }
-
-const MapComponent: React.FC<MapProps> = ({ center, zoom }) => {
+const customIcon = L.divIcon({
+  className: "custom-marker",
+  html: ` <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="30" 
+      height="30" 
+      viewBox="0 0 24 24" 
+      fill="red" 
+      stroke="white" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round">
+      <title>Kayelekera Mine</title> <!-- This shows the name on hover -->
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 4.87 7 13 7 13s7-8.13 7-13c0-3.87-3.13-7-7-7z"></path>
+      <circle cx="12" cy="9" r="3"></circle>
+    </svg>`, // Using an emoji as an icon
+  iconSize: [30, 30],
+  iconAnchor: [15, 30],
+});
+const MapComponent: React.FC<MapProps> = ({ center, zoom, title }) => {
   useEffect(() => {
-    // Access Leaflet methods on client-side if needed
     if (typeof window !== 'undefined') {
+      // Ensure any client-side logic runs properly
     }
   }, []);
-
+  console.log("Deposit => ", center)
   return (
-    <MapContainer center={center} zoom={zoom} style={{ height: '400px' }}>
+    <MapContainer center={center} zoom={zoom} style={{ height: '700px', width: '100%' }}>
       <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
       />
-      <Marker icon={new L.Icon({ iconUrl: "/src/img/marker.png" })} position={center} />
+      <Marker
+        position={center}
+        icon={customIcon}
+        title={title}
+      />
     </MapContainer>
   );
 };

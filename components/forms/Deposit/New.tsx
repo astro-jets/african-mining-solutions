@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { BsPlus, BsX } from "react-icons/bs";
 
 const initialAsset = {
-    name: '', country: '', long: 0, lat: 0, path: '', description: ''
+    name: '', country: '', long: '0', lat: '0', path: '', description: ''
 }
 const NewDeposit = () => {
     const [file, setFile] = useState<File>();
@@ -135,13 +135,13 @@ const NewDeposit = () => {
                                                 Longitude (+)
                                             </label>
                                             <input
-                                                type="number"
+                                                type="text"
                                                 placeholder="Longitude (+)"
                                                 className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                                 onChange={(e) => {
                                                     setFormData({
                                                         ...formData,
-                                                        long: parseInt(e.target.value)
+                                                        long: e.target.value
                                                     })
                                                 }}
                                                 value={formData.long}
@@ -152,13 +152,13 @@ const NewDeposit = () => {
                                                 Latitude (-)
                                             </label>
                                             <input
-                                                type="number"
+                                                type="text"
                                                 placeholder="Latititude (-) "
                                                 className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                                 onChange={(e) => {
                                                     setFormData({
                                                         ...formData,
-                                                        lat: parseInt(e.target.value)
+                                                        lat: e.target.value
                                                     })
                                                 }}
                                                 value={formData.lat}

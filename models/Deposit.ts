@@ -5,7 +5,7 @@ const DepositsSchema = new Schema({
   name: { type: String, required: true },
   country: { type: String, required: true },
   description: { type: String, required: true },
-  coordinates: [String],
+  coordinates: [Number],
   image: { type: String, required: true },
 });
 

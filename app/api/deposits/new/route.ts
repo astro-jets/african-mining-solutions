@@ -9,12 +9,12 @@ export async function POST(req: Request) {
   await dbConnect();
   try {
     const data = await req.formData();
-    const name = data.get("name") as unknown as String;
-    const country = data.get("country") as unknown as String;
-    const description = data.get("description") as unknown as String;
+    const name = data.get("name") as unknown as string;
+    const country = data.get("country") as unknown as string;
+    const description = data.get("description") as unknown as string;
     const file = data.get("file") as unknown as File;
-    const lat = data.get("lat") as unknown as String;
-    const long = data.get("long") as unknown as String;
+    const lat = parseFloat(data.get("lat") as string);
+    const long = parseFloat(data.get("long") as string);
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
