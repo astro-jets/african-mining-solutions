@@ -127,7 +127,7 @@ const ChartOne = ({ monthly }: { monthly: any }) => {
   const [state, setState] = useState<ChartOneState>({
     series: [
       {
-        name: "Assets",
+        name: "Deposits",
         data: [
           100,
           200,
@@ -145,20 +145,20 @@ const ChartOne = ({ monthly }: { monthly: any }) => {
       },
 
       {
-        name: "Assignments",
+        name: "Minerals",
         data: [
-          monthly[0].Assignments,
-          monthly[1].Assignments,
-          monthly[2].Assignments,
-          monthly[3].Assignments,
-          monthly[4].Assignments,
-          monthly[5].Assignments,
-          monthly[6].Assignments,
-          monthly[7].Assignments,
-          monthly[8].Assignments,
-          monthly[9].Assignments,
-          monthly[10].Assignments,
-          monthly[11].Assignments,
+          100,
+          200,
+          300,
+          400,
+          500,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1100,
         ],
       },
     ],
@@ -173,12 +173,12 @@ const ChartOne = ({ monthly }: { monthly: any }) => {
 
   // },[])
 
-  const handleReset = () => {
-    setState((prevState) => ({
-      ...prevState,
-    }));
-  };
-  handleReset;
+  // const handleReset = () => {
+  //   setState((prevState) => ({
+  //     ...prevState,
+  //   }));
+  // };
+  // handleReset;
 
   return (
     <div className="col-span-12 rounded-3xl border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
@@ -189,7 +189,7 @@ const ChartOne = ({ monthly }: { monthly: any }) => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-primary dark:text-white">Assets Created</p>
+              <p className="font-semibold text-primary dark:text-white">Companies Created</p>
               <p className="text-sm font-medium">01.01.2024 - 01.01.2024</p>
             </div>
           </div>
@@ -198,7 +198,7 @@ const ChartOne = ({ monthly }: { monthly: any }) => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-[#333] dark:bg-[#5757ec]"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-[#333] dark:text-white">Assets Assigned</p>
+              <p className="font-semibold text-[#333] dark:text-white">Deposits Created</p>
               <p className="text-sm font-medium">01.01.2024 - 01.01.2024</p>
             </div>
           </div>

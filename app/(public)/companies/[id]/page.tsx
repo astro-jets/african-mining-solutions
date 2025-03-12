@@ -50,6 +50,7 @@ const SingleCompanyPage = async ({ params }: { params: Params }) => {
                         parseInt(company.coordinates[0]),
                         parseInt(company.coordinates[1])
                     ]}
+                        title={company.name}
                         zoom={15} />
                 </div>
 

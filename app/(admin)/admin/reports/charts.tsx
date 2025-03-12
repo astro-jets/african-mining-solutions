@@ -9,7 +9,7 @@ const Charts = ({ expiry, monthly, weekly }: { expiry: any, weekly: any, monthly
             <div className="col-span-12 space-y-4">
                 <ChartOne monthly={monthly} />
                 <ChartTwo weekly={weekly} />
-                <DonutChart expiry={expiry} />
+                <DonutChart expiry={{ unexpired: 2, expired: 2, expiring: 2 }} />
             </div>
         </div>
     );

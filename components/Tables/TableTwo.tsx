@@ -7,15 +7,15 @@ import { FaFilePdf } from "react-icons/fa";
 import moment from "moment";
 
 
-const TableTwo = ({ assets }: { assets: any }) => {
-  if (!assets) { return }
+const TableTwo = ({ data }: { data: any }) => {
+  if (!data) { return }
 
   // const downloadPDF = (data: any) => {
   //   alert("Saving Report")
   //   const doc = new jsPDF();
   //   const arr: any = [];
-  //   for (let i = 0; i < assets.length; i++) {
-  //     const asset = assets[i];
+  //   for (let i = 0; i < data.length; i++) {
+  //     const asset = data[i];
   //     const ed = calculateAssetExpiry(asset.createdAt);
   //     const expiry = ed.yearsLeft > 0 ?
   //       ed.yearsLeft.toString() + " years and " + ed.monthsLeft.toString() + " months" : "Asset has expired";
@@ -35,7 +35,7 @@ const TableTwo = ({ assets }: { assets: any }) => {
   //     head: [['Asset ID', 'Name', 'Created On', 'Expires On', 'Procurement Cost', "Assigned to"]],
   //     body: arr as RowInput[],
   //   });
-  //   doc.save('assets-data.pdf');
+  //   doc.save('data-data.pdf');
   //   console.log("Doc => ", doc)
   // };
 
@@ -44,10 +44,10 @@ const TableTwo = ({ assets }: { assets: any }) => {
     <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="px-4 py-6 md:px-6 xl:px-7.5 w-full flex justify-between">
         <h4 className="text-xl font-semibold text-black dark:text-white">
-          Assets
+          data
         </h4>
         <button
-          // onClick={() => downloadPDF(assets)}
+          // onClick={() => downloadPDF(data)}
           className="bg-primary text-white flex py-2 px-4 rounded hover:bg-primary-dark space-x-3"
         >
           <span>Download as PDF</span>
@@ -74,7 +74,7 @@ const TableTwo = ({ assets }: { assets: any }) => {
 
       </div>
 
-      {/* {assets.map((asset, key) => (
+      {/* {data.map((asset, key) => (
         <div
           className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
           key={key}
@@ -112,7 +112,7 @@ const TableTwo = ({ assets }: { assets: any }) => {
             <p className="text-sm text-black dark:text-white">{asset.cost}</p>
           </div>
           <div className="col-span-1 flex items-center">
-            <a href={`assets/${asset._id}`} className="text-sm text-white bg-primary py-2 px-4 rounded-2xl hover:cursor-pointer">view</a>
+            <a href={`data/${asset._id}`} className="text-sm text-white bg-primary py-2 px-4 rounded-2xl hover:cursor-pointer">view</a>
           </div>
         </div>
       ))} */}

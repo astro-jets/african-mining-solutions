@@ -1,12 +1,9 @@
 "use client"
 
-
-import Link from "next/link";
 import { useState } from "react";
-// import Loader from "../common/Loader";
-// import SucessModal from "@/app/components/SuccessModal";
+import SucessModal from "@/components/popups/SuccessModal";
+import ErrorModal from "@/components/popups/ErrorModal";
 import { useRouter } from "next/navigation";
-// import ErrorModal from "@/app/components/ErrorModal";
 
 import { BsPlus, BsX } from "react-icons/bs";
 
@@ -67,6 +64,33 @@ const NewMineral = () => {
 
     return (
         <>
+
+            {
+                <SucessModal
+                    isOpen={showModal}
+                    message="Mineral saved successfully"
+                    onClose={() => {
+                        setShowForm(false)
+                        setShowModal(false);
+                        router.refresh();
+                    }}
+                    title={'Save Success'}
+                    url=""
+                />
+            }
+            {
+                <ErrorModal
+                    isOpen={showErrModal}
+                    message={errMsg}
+                    onClose={() => {
+                        setShowForm(false)
+                        setShowErrModal(false);
+                        router.refresh();
+                    }}
+                    title={'Save Failure'}
+                    url=""
+                />
+            }
             {!showForm &&
                 <div
                     className="flex space-x-4 w-full p-2 item-center justify-center hover:cursor-pointer"
@@ -75,7 +99,7 @@ const NewMineral = () => {
                     <span className="w-8 h-8 bg-stroke rounded-full p-2 flex items-center justify-center">
                         <BsPlus color="white" size={30} />
                     </span>
-                    <p className="text-xl text-graydark dark:text-gray">
+                    <p className="text-xl text-graydark dark:text-white">
                         {showForm ? 'cancel entry' : 'add a new mineral'}
                     </p>
                 </div>

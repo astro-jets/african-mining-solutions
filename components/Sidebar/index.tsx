@@ -150,46 +150,49 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li>
                 <Link
                   href="/admin/deposits"
-                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("assets") &&
-                    "bg-white text-primary dark:bg-meta-4"
+                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 
+                    ${pathname.includes("deposits") && "bg-white text-primary dark:bg-meta-4"
                     }`}
                 >
                   <IoHammerOutline size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
                   Deposits
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="/admin/minerals"
-                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("assets") &&
-                    "bg-white text-primary dark:bg-meta-4"
+                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 
+                    ${pathname.includes("minerals") && "bg-white text-primary dark:bg-meta-4"
                     }`}
                 >
-                  <FaMountain size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
+                  <FaMountain size={20} className={`${pathname.includes("minerals") ? 'fill-orange-600' : 'fill-white'}`} />
                   Minerals
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/admin/companies/applications"
-                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("assets") &&
-                    "bg-white text-primary dark:bg-meta-4"
-                    }`}
-                >
-                  <BsEnvelopeArrowUp size={20} className={`${pathname.includes("deposits") ? 'fill-orange-600' : 'fill-white'}`} />
-                  Applications
                 </Link>
               </li>
 
               <li>
                 <Link
                   href="/admin/companies"
-                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("maintenances") &&
-                    "bg-white text-primary dark:bg-meta-4"
+                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 
+                    ${pathname.includes("companies") && "bg-white text-primary dark:bg-meta-4"
                     }`}
                 >
-                  <BsBuildings size={20} className={`${pathname.includes("maintenances") ? 'fill-orange-600' : 'fill-white'}`} />
+                  <BsBuildings size={20} className={`${pathname.includes("companies") ? 'fill-orange-600' : 'fill-white'}`} />
                   Companies
+                </Link>
+              </li>
+
+
+              <li>
+                <Link
+                  href="/admin/applications"
+                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 
+                    ${pathname.includes("applications") && "bg-white text-primary dark:bg-meta-4"
+                    }`}
+                >
+                  <BsEnvelopeArrowUp size={20} className={`${pathname.includes("applications") ? 'fill-orange-600' : 'fill-white'}`} />
+                  Applications
                 </Link>
               </li>
 
@@ -200,7 +203,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     "bg-white text-primary dark:bg-meta-4"
                     }`}
                 >
-                  <BsBarChartLine size={20} className={`${pathname.includes("maintenances") ? 'fill-orange-600' : 'fill-white'}`} />
+                  <BsBarChartLine size={20} className={`${pathname.includes("reports") ? 'fill-orange-600' : 'fill-white'}`} />
                   Reports
                 </Link>
               </li>

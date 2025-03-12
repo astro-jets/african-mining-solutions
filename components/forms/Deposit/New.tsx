@@ -3,15 +3,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
-// import Loader from "../common/Loader";
-// import SucessModal from "@/app/components/SuccessModal";
 import { useRouter } from "next/navigation";
-// import ErrorModal from "@/app/components/ErrorModal";
-
+import SucessModal from "@/components/popups/SuccessModal";
+import ErrorModal from "@/components/popups/ErrorModal";
 import { BsPlus, BsX } from "react-icons/bs";
 
 const initialAsset = {
-    name: '', country: '', long: '0', lat: '0', path: '', description: ''
+    name: '', country: '', long: '', lat: '', path: '', description: ''
 }
 const NewDeposit = () => {
     const [file, setFile] = useState<File>();
@@ -34,7 +32,17 @@ const NewDeposit = () => {
             setErrMsg("Please enter the mine deposit name.")
             return
         }
-        if (!formData.lat || !formData.long) {
+        if (!formData.description) {
+            setShowErrModal(true)
+            setErrMsg("Please enter the mine deposit's description.")
+            return
+        }
+        if (!formData.country) {
+            setShowErrModal(true)
+            setErrMsg("Please enter the mine deposit's country.")
+            return
+        }
+        if (formData.lat == '' || formData.long == '') {
             setShowErrModal(true)
             setErrMsg("Please enter the mine deposit location.")
             return
@@ -44,8 +52,8 @@ const NewDeposit = () => {
         data.append('name', formData.name);
         data.append('country', formData.country);
         data.append('description', formData.description);
-        data.append('lat', formData.lat.toString());
-        data.append('long', formData.long.toString());
+        data.append('lat', formData.lat);
+        data.append('long', formData.long);
         console.log("Req => ", data)
         setLoading(true)
         const res = await fetch(`http://localhost:3000/api/deposits/new`, {
@@ -67,6 +75,31 @@ const NewDeposit = () => {
 
     return (
         <>
+
+            {
+                <SucessModal
+                    isOpen={showModal}
+                    message="Deposit saved successfully"
+                    onClose={() => {
+                        setShowForm(false)
+                        setShowModal(false);
+                        router.refresh();
+                    }}
+                    title={'Save Success'}
+                    url=""
+                />
+            }
+            {
+                <ErrorModal
+                    isOpen={showErrModal}
+                    message={errMsg}
+                    onClose={() => {
+                        setShowErrModal(false);
+                    }}
+                    title={'Save Failure'}
+                    url=""
+                />
+            }
             {!showForm &&
                 <div
                     className="flex space-x-4 w-full p-2 item-center justify-center hover:cursor-pointer"
@@ -75,7 +108,7 @@ const NewDeposit = () => {
                     <span className="w-8 h-8 bg-stroke rounded-full p-2 flex items-center justify-center">
                         <BsPlus color="white" size={30} />
                     </span>
-                    <p className="text-xl text-graydark dark:text-gray">
+                    <p className="text-xl text-graydark dark:text-white">
                         {showForm ? 'cancel entry' : 'add a new mine deposit'}
                     </p>
                 </div>

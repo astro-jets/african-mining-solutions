@@ -60,6 +60,7 @@ const NewCompany = () => {
             setFormData(initialAsset);
             setLoading(false)
             setShowModal(true);
+            router.refresh()
         } else {
             setErrMsg(result.message)
             setShowErrModal(true);
@@ -77,7 +78,7 @@ const NewCompany = () => {
                     <span className="w-8 h-8 bg-stroke rounded-full p-2 flex items-center justify-center">
                         <BsPlus color="white" size={30} />
                     </span>
-                    <p className="text-xl text-graydark dark:text-gray">
+                    <p className="text-xl text-graydark dark:text-white">
                         {showForm ? 'cancel entry' : 'add a new company'}
                     </p>
                 </div>
@@ -174,13 +175,13 @@ const NewCompany = () => {
                                                 Longitude (+)
                                             </label>
                                             <input
-                                                type="number"
+                                                type="text"
                                                 placeholder="Longitude (+)"
                                                 className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                                 onChange={(e) => {
                                                     setFormData({
                                                         ...formData,
-                                                        long: parseInt(e.target.value)
+                                                        long: parseFloat(e.target.value)
                                                     })
                                                 }}
                                                 value={formData.long}
@@ -191,13 +192,13 @@ const NewCompany = () => {
                                                 Latitude (-)
                                             </label>
                                             <input
-                                                type="number"
+                                                type="text"
                                                 placeholder="Latititude (-) "
                                                 className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                                 onChange={(e) => {
                                                     setFormData({
                                                         ...formData,
-                                                        lat: parseInt(e.target.value)
+                                                        lat: parseFloat(e.target.value)
                                                     })
                                                 }}
                                                 value={formData.lat}
