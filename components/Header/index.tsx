@@ -22,9 +22,9 @@ const Header = (props: {
 
   }
   return (
-    <div className="rounded-2xl sticky top-0 z-999 flex w-[93%] bg-white  dark:bg-boxdark drop-shadow-none">
+    <div className="rounded-2xl fixed top-4 z-999 flex w-[70%] bg-white  dark:bg-boxdark drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-4  2xl:px-11">
-        <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
+        <div className="flex items-center gap-2 sm:gap-4 ">
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
             aria-controls="sidebar"
@@ -32,7 +32,7 @@ const Header = (props: {
               e.stopPropagation();
               props.setSidebarOpen(!props.sidebarOpen);
             }}
-            className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
+            className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark "
           >
             <span className="relative block h-5.5 w-5.5 cursor-pointer">
               <span className="du-block absolute right-0 h-full w-full">
@@ -64,12 +64,7 @@ const Header = (props: {
           {/* <!-- Hamburger Toggle BTN --> */}
 
           <Link className="block flex-shrink-0 lg:hidden" href="/">
-            <Image
-              width={32}
-              height={32}
-              src={"/images/logo.png"}
-              alt="Logo"
-            />
+            <div className="text-5xl">AMS</div>
           </Link>
         </div>
 

@@ -8,9 +8,9 @@ interface ChartTwoState {
     series: number[];
 }
 
-const DonutChart = ({ expiry }: { expiry: { unexpired: number, expired: number, expiring: number } }) => {
+const DonutChart = ({ minerals, width }: { width: number; minerals: { gold: number, uranium: number, diamonds: number, coal: number } }) => {
     const options: ApexOptions = {
-        colors: ["#3C50E0", "#ff9f0f", '#b30000'],
+        colors: ["#ff9f0f", "#3C50E0", '#b30000', 'gray'],
         chart: {
             fontFamily: "Satoshi, sans-serif",
             type: "pie",
@@ -37,7 +37,7 @@ const DonutChart = ({ expiry }: { expiry: { unexpired: number, expired: number, 
             },
         ],
         dataLabels: { enabled: true },
-        labels: ['Not Expired', 'Expiring this year', 'Expired'],
+        labels: ['gold', 'uranium', 'diamonds', 'coal'],
         legend: {
             position: "top",
             horizontalAlign: "center",
@@ -46,7 +46,7 @@ const DonutChart = ({ expiry }: { expiry: { unexpired: number, expired: number, 
             fontSize: "14px",
             itemMargin: { horizontal: 24 },
             markers: {
-                radius: 99,
+
             },
         },
         fill: {
@@ -55,7 +55,7 @@ const DonutChart = ({ expiry }: { expiry: { unexpired: number, expired: number, 
     };
 
     const [state, setState] = useState<ChartTwoState>({
-        series: [expiry.unexpired, expiry.expiring, expiry.expired]
+        series: [minerals.gold, minerals.uranium, minerals.diamonds, minerals.coal]
     });
 
     const handleReset = () => {
@@ -71,15 +71,18 @@ const DonutChart = ({ expiry }: { expiry: { unexpired: number, expired: number, 
             <div className="mb-4 justify-between gap-4 sm:flex">
                 <div>
                     <h4 className="text-xl font-semibold text-black dark:text-white">
-                        Asset Depreciation
+                        Minerals Mined
                     </h4>
                 </div>
             </div>
 
             <div className=' flex flex-col items-center w-full'>
-                <ReactApexChart options={options} series={state.series} type="pie"
-                    // height={350}
-                    width={"800"} />
+                <ReactApexChart
+                    options={options}
+                    series={state.series}
+                    width={width}
+                    type="pie"
+                />
             </div>
         </div>
     );

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { BsPlus, BsX } from "react-icons/bs";
 
 const initialAsset = {
-    name: '', country: '', long: 0, lat: 0, path: '', description: '',
+    name: '', country: '', long: '', lat: '', path: '', description: '',
 }
 const NewMineral = () => {
     const [file, setFile] = useState<File>();
@@ -23,17 +23,27 @@ const NewMineral = () => {
     const handleSubmit = async () => {
         if (!file) {
             setShowErrModal(true)
-            setErrMsg("Please attach an image of the mine mineral.")
+            setErrMsg("Please attach an image of the mineral.")
             return
         }
         if (!formData.name) {
             setShowErrModal(true)
-            setErrMsg("Please enter the mine mineral name.")
+            setErrMsg("Please enter the mineral name.")
             return
         }
-        if (!formData.lat || !formData.long) {
+        if (!formData.description) {
             setShowErrModal(true)
-            setErrMsg("Please enter the mine mineral location.")
+            setErrMsg("Please enter the mineral's description.")
+            return
+        }
+        if (!formData.country) {
+            setShowErrModal(true)
+            setErrMsg("Please enter the mineral's country.")
+            return
+        }
+        if (formData.lat == '' || formData.long == '') {
+            setShowErrModal(true)
+            setErrMsg("Please enter the mineral location.")
             return
         }
         const data = new FormData();
@@ -41,8 +51,8 @@ const NewMineral = () => {
         data.append('name', formData.name);
         data.append('country', formData.country);
         data.append('description', formData.description);
-        data.append('lat', formData.lat.toString());
-        data.append('long', formData.long.toString());
+        data.append('lat', formData.lat);
+        data.append('long', formData.long);
         console.log("Req => ", data)
         setLoading(true)
         const res = await fetch(`http://localhost:3000/api/minerals/new`, {
@@ -165,7 +175,7 @@ const NewMineral = () => {
                                                 onChange={(e) => {
                                                     setFormData({
                                                         ...formData,
-                                                        long: parseInt(e.target.value)
+                                                        long: e.target.value
                                                     })
                                                 }}
                                                 value={formData.long}
@@ -182,7 +192,7 @@ const NewMineral = () => {
                                                 onChange={(e) => {
                                                     setFormData({
                                                         ...formData,
-                                                        lat: parseInt(e.target.value)
+                                                        lat: e.target.value
                                                     })
                                                 }}
                                                 value={formData.lat}
@@ -227,7 +237,7 @@ const NewMineral = () => {
                                 </div>
                             </div>
 
-                            <button type="button" className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+                            <button type="button" className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray  dark:text-white hover:bg-opacity-90"
                                 onClick={handleSubmit}>
                                 Register
                             </button>

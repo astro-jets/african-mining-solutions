@@ -7,7 +7,7 @@ export default function DefaultLayout({
   children }: {
     children: React.ReactNode;
   }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   return (
     <>
       {/* <!-- ===== Page Wrapper Start ===== --> */}
@@ -19,7 +19,7 @@ export default function DefaultLayout({
         {/* <!-- ===== Content Area Start ===== --> */}
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden mt-5">
           {/* <!-- ===== Header Start ===== --> */}
-          <div className="top-0 relative w-full flex items-center justify-center  mt-2 h-20">
+          <div className="top-0 mb-15 relative w-full flex items-center justify-center  mt-2 h-20">
             <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           </div>
           {/* <!-- ===== Header End ===== --> */}

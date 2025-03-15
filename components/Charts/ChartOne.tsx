@@ -1,4 +1,4 @@
-// import { MonthlyReport } from "@/types/monthlyReport";
+import { MonthlyReport } from "@/types/Report";
 import { ApexOptions } from "apexcharts";
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
@@ -123,62 +123,28 @@ interface ChartOneState {
   }[];
 }
 
-const ChartOne = ({ monthly }: { monthly: any }) => {
+const ChartOne = ({ monthly }: { monthly: MonthlyReport }) => {
+  console.log("Reports => ", monthly)
   const [state, setState] = useState<ChartOneState>({
     series: [
       {
-        name: "Deposits",
-        data: [
-          100,
-          200,
-          300,
-          400,
-          500,
-          500,
-          600,
-          700,
-          800,
-          900,
-          1000,
-          1100,
-        ],
+        name: "Companies",
+        data: monthly.companies,
       },
 
       {
-        name: "Minerals",
-        data: [
-          100,
-          200,
-          300,
-          400,
-          500,
-          500,
-          600,
-          700,
-          800,
-          900,
-          1000,
-          1100,
-        ],
-      },
+        name: "Deposits",
+        data: monthly.deposits,
+      }
     ],
   });
 
-  // useEffect(()=>{
-  //   for (let i = 0; i < monthly.length; i++) {
-  //     const month = monthly[i];
-
-
-  //   }
-
-  // },[])
-
-  // const handleReset = () => {
-  //   setState((prevState) => ({
-  //     ...prevState,
-  //   }));
-  // };
-  // handleReset;
+  const handleReset = () => {
+    setState((prevState) => ({
+      ...prevState,
+    }));
+  };
+  handleReset;
 
   return (
     <div className="col-span-12 rounded-3xl border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
@@ -189,8 +155,8 @@ const ChartOne = ({ monthly }: { monthly: any }) => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-primary dark:text-white">Companies Created</p>
-              <p className="text-sm font-medium">01.01.2024 - 01.01.2024</p>
+              <p className="font-semibold text-primary dark:text-white">Deposits Created</p>
+              <p className="text-sm font-medium">01.01.2025 - 31.12.2025</p>
             </div>
           </div>
           <div className="flex min-w-47.5">
@@ -198,8 +164,8 @@ const ChartOne = ({ monthly }: { monthly: any }) => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-[#333] dark:bg-[#5757ec]"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-[#333] dark:text-white">Deposits Created</p>
-              <p className="text-sm font-medium">01.01.2024 - 01.01.2024</p>
+              <p className="font-semibold text-[#333] dark:text-white">Companies Creaeted</p>
+              <p className="text-sm font-medium">01.01.2025 - 31.12.2025</p>
             </div>
           </div>
         </div>

@@ -236,7 +236,7 @@ const NewDeposit = () => {
                                 </div>
                             </div>
 
-                            <button type="button" className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+                            <button type="button" className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray  dark:text-white hover:bg-opacity-90"
                                 onClick={handleSubmit}>
                                 Register
                             </button>
