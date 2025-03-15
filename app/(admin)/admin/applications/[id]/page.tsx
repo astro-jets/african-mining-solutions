@@ -5,6 +5,7 @@ import moment from "moment";
 import Image from "next/image";
 import { fetchApplicationById } from "@/services/applications";
 import { Application } from "@/types/Application";
+import HandleApplication from "@/components/forms/Application/Handle";
 
 type paramProps = {
     params: Params
@@ -30,7 +31,7 @@ const SingleApplication = async ({ params }: paramProps) => {
                                         {application.message}
                                     </p>
 
-                                    {/* <HandleMaintenance application={application} /> */}
+                                    <HandleApplication application={application} />
                                 </div>
                             </div>
                         </div>
