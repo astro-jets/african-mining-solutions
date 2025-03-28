@@ -1,27 +1,25 @@
-// models/Application.ts
-import mongoose from "mongoose";
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
+// Define the Application schema
 const ApplicationSchema = new Schema(
   {
-    company: {
-      type: String,
-    },
-    mineral: {
-      type: String,
-    },
-    message: {
-      type: String,
-    },
-    status: {
-      type: String,
-      default: "pending",
-    },
+    name: { type: String, required: true },
+    country: { type: String, required: true },
+    description: { type: String, required: true },
+    phone: { type: String, required: true },
+    email: { type: String, required: true },
+    coordinates: [String],
+    image: { type: String, required: true },
+    status: { type: String, default: "pending" },
+    user: { type: String },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
+// Initialize the Application model
 const Application =
-  mongoose.models.Application || model("Application", ApplicationSchema);
+  models.Application || model("Application", ApplicationSchema);
 
 export default Application;

@@ -14,6 +14,12 @@ export const fetchApplicationById = async (id: string) => {
   return response.data.application;
 };
 
+// Fetch Application by User
+export const fetchApplicationByUser = async (id: string) => {
+  const response = await axios.get(`/applications/user/?id=${id}`);
+  return response.data.application;
+};
+
 // Create a Application
 export const createApplication = async (application: any) => {
   const response = await axios.post("/applications/new", application);

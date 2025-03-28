@@ -4,6 +4,8 @@ import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Charts from "./charts";
 import { fetchMineralsReport, fetchMonthlyReport } from "@/services/reports";
 import TableThree from "@/components/Tables/TableThree";
+import ApplicationsTable from "@/components/Tables/ApplicationsTable";
+import { fetchApplications } from "@/services/applications";
 export const metadata: Metadata = {
     title: "Africa Mining Solutions | Dashboard",
     description: "This is the dashboard",
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
 export default async function Home() {
     const monthly = await fetchMonthlyReport();
     const minerals = await fetchMineralsReport();
+    const applications = await fetchApplications();
     return (
         <>
             <DefaultLayout>
@@ -22,7 +25,7 @@ export default async function Home() {
                             <Charts minerals={minerals} monthly={monthly} /> :
                             <p className="w-full text-lg font-bold text-center">Report data is not available yet</p>
                     }
-                    <TableThree />
+                    <ApplicationsTable applications={applications} />
                 </div>
             </DefaultLayout>
         </>

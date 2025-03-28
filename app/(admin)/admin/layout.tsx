@@ -1,4 +1,5 @@
 "use client";
+import AuthProvider from "@/app/context/AuthProvider";
 import "@/css/satoshi.css";
 import "@/css/style.css";
 import React, { useEffect, useState } from "react";
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <div className="dark:bg-boxdark-2 dark:text-bodydark">
-          {children}
-        </div>
+        <AuthProvider>
+          <div className="dark:bg-boxdark-2 dark:text-bodydark">
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

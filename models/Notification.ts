@@ -6,7 +6,7 @@ const NotificationSchema = new Schema(
   {
     user: { type: String },
     title: { type: String },
-    asset: { type: String },
+    application: { type: String },
     for: { type: String, default: "admin" },
     by: { type: String, default: "user" },
     message: { type: String },

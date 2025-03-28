@@ -1,9 +1,13 @@
 export type Application = {
   _id?: string;
-  mineral: string;
-  company: string;
-  message: string;
-  status: string;
-  createdAt?: string;
-  updatedAt?: string;
+  name: string;
+  phone: string;
+  email: string;
+  country: string;
+  description: string;
+  coordinates: string[];
+  image: string;
+  createdAt: string;
+  user?: string;
+  status?: string;
 };

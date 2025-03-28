@@ -7,7 +7,7 @@ import useColorMode from "@/hooks/useColorMode";
 import { BsCheck2Circle } from "react-icons/bs";
 
 
-const DropdownNotification = ({ notifications }: { notifications: any }) => {
+const DropdownNotification = ({ notifications }: { notifications: any[] }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ const DropdownNotification = ({ notifications }: { notifications: any }) => {
         return;
       setDropdownOpen(false);
     };
-    notifications.length ? setNotifying(true) : setNotifying(false);
+    // notifications.length ? setNotifying(true) : setNotifying(false);
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
   });
@@ -42,7 +42,7 @@ const DropdownNotification = ({ notifications }: { notifications: any }) => {
   });
 
   const readNotifications = async (id: string) => {
-    const res = await fetch(`http://localhost:3000/api/actions/readNotification/?notification=${id}`, {
+    const res = await fetch(`http://localhost:3000/api/notifications/read/?notification=${id}`, {
       method: "PATCH",
     });
     console.log("Res => ", res)
@@ -96,30 +96,30 @@ const DropdownNotification = ({ notifications }: { notifications: any }) => {
 
           <ul className="flex h-auto flex-col overflow-y-auto">
             {
-              // notifications?.map(notification => (
-              //   <li key={notification._id} onClick={() => { readNotifications(notification._id) }}>
-              //     <Link
-              //       className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              //       href="#"
-              //     >
-              //       <div className="flex items-center ">
-              //         <p className="text-sm flex flex-col">
-              //           <span className="text-black dark:text-white">
-              //             {notification.title}
-              //           </span>{" "}
-              //           {notification.message}
-              //         </p>
-              //         <div className="flex items-center justify-center rounded-full p-2 bg-primary">
-              //           {colorMode == 'dark' ?
-              //             <BsCheck2Circle color="white" size={10} /> :
-              //             <BsCheck2Circle color="black" size={10} />
-              //           }
-              //         </div>
-              //       </div>
-              //       <p className="text-xs">{moment(notification.createdAt).calendar()}</p>
-              //     </Link>
-              //   </li>
-              // ))
+              notifications?.map(notification => (
+                <li key={notification._id} onClick={() => { readNotifications(notification._id) }}>
+                  <Link
+                    className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                    href="#"
+                  >
+                    <div className="flex items-center ">
+                      <p className="text-sm flex flex-col">
+                        <span className="text-black dark:text-white">
+                          {notification.title}
+                        </span>{" "}
+                        {notification.message}
+                      </p>
+                      <div className="flex items-center justify-center rounded-full p-2 bg-primary">
+                        {colorMode == 'dark' ?
+                          <BsCheck2Circle color="white" size={10} /> :
+                          <BsCheck2Circle color="black" size={10} />
+                        }
+                      </div>
+                    </div>
+                    <p className="text-xs">{moment(notification.createdAt).calendar()}</p>
+                  </Link>
+                </li>
+              ))
             }
 
           </ul>

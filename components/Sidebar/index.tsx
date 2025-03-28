@@ -8,6 +8,7 @@ import Image from "next/image";
 import { BsBarChartLine, BsBuilding, BsBuildings, BsDoorOpen, BsEnvelopeArrowUp, BsGear, BsTools } from "react-icons/bs";
 import { IoFolderOpenOutline, IoHammerOutline } from "react-icons/io5";
 import { FaMountain } from "react-icons/fa";
+import { signOut } from "next-auth/react";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -208,17 +209,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     </Link>
                   </li>
 
-                  {/* <li>
-                <button
-                  onClick={() => signOut({ callbackUrl: "/signin" })}
-                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("signout") &&
-                    "bg-graydark dark:bg-meta-4"
-                    }`}
-                >
-                  <BsDoorOpen size={20} color={'#fff'} />
-                  Log Out
-                </button>
-              </li> */}
+                  <li>
+                    <button
+                      onClick={() => signOut({ callbackUrl: "/signin" })}
+                      className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("signout") &&
+                        "bg-graydark dark:bg-meta-4"
+                        }`}
+                    >
+                      <BsDoorOpen size={20} color={'#fff'} />
+                      Log Out
+                    </button>
+                  </li>
                 </ul>
               </div>
             </nav>

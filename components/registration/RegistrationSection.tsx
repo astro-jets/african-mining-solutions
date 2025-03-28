@@ -8,6 +8,7 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { CustomEase } from "gsap/CustomEase";
 import { useGSAP } from '@gsap/react'
 import { useRef } from "react";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, CustomEase);
 
@@ -52,9 +53,9 @@ const RegistrationSection = () => {
                     <p className="text-xl font-thin item">Registration</p>
                     <h1 className="text-5xl item">Working with AMS</h1>
                     <p className="text-xl font-thin item">With expanding operations and new projects across all business areas, there's plenty of opportunity to grow your business with AMS.</p>
-                    <button className="bg-black/30 item  p-2 rounded-2xl w-40 text-center font-semibold flex justify-around items-center">
-                        Learn more <BsArrowRightCircleFill className="fill-white" size={30} />
-                    </button>
+                    <Link href={'/signup'} className="bg-black/30 item  p-2 rounded-2xl w-40 text-center font-semibold flex justify-around items-center">
+                        Register <BsArrowRightCircleFill className="fill-white" size={30} />
+                    </Link>
                 </div>
             </div>
         </section>
